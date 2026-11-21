@@ -1,0 +1,127 @@
+Inspired by Luke Barousse
+
+
+From github repo: https://github.com/lukebarousse/dbt_Analytics_Engineering_Course/releases
+INSTALL httpfs;
+LOAD httpfs;
+
+ATTACH 'https://github.com/lukebarousse/dbt_Analytics_Engineering_Course/releases/download/warehouse/prod.duckdb' AS jobs;
+
+USE jobs;
+SHOW TABLES;
+
+SELECT * FROM top_locations;
+
+============================
+
+Installing uv:
+> winget install --id=astral-sh.uv -e
+Or, powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+Terminal > set Path=C:\Users\joemar\.local\bin;%Path%
+Or, powershell > $env:Path = "C:\Users\joemar\.local\bin;$env:Path"
+uv --version
+uv 0.13.9 (6b2d39dcc 2026-11-17 x86_64-pc-windows-msvc)
+
+Init project
+> uv init
+> uv sync
+
+If there 
+Activate python environment
+> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+
+Or, > .\.venv\Scripts\activate
+
+Install duckdb
+> winget install DuckDB
+
+Install duckdb cli:
+> python -m pip install duckdb-cli
+Or, > winget install DuckDB.cli
+Or, winget install --id DuckDB.cli --exact --force
+
+DuckDB UI
+> duckdb ui
+
+Add to PATH, in powershell:
+$links = "$env:LOCALAPPDATA\Microsoft\WinGet\Links"
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+
+if (($userPath -split ";") -notcontains $links) {
+    [Environment]::SetEnvironmentVariable(
+        "Path",
+        (($userPath.TrimEnd(";") + ";" + $links).Trim(";")),
+        "User"
+    )
+}
+
+$env:Path += ";$links"
+======================
+Add duckdb to PATH, in powershell:
+$links = "$env:LOCALAPPDATA\Microsoft\WinGet\Links"
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+if (($userPath -split ";") -notcontains $links) {
+    [Environment]::SetEnvironmentVariable("Path", "$userPath;$links", "User")
+}
+$env:Path += ";$links"
+duckdb
+
+======================
+dbt Setup
+> uv add dbt
+> dbt --version
+    dbt 2.0.12
+
+> dbt init --project-name analytics --skip-profile-setup
+
+If you have to create a profiles.yml on your own,
+you can create it inside this folder:
+C:\Users\[name]\.dbt\profiles.yml
+i. Create a separate folder for data within the project folder
+    > mkdir data
+ii. In the profiles.yml, it may be indicated with: path: ../data/dev.duckdb
+
+Navigate to the [project] folder, in this case is 'analytics'
+> cd analytics
+> dbt debug
+> dbt ls
+
+seed, run, test:
+> dbt seed
+> dbt run
+> dbt test
+
+DuckDB:
+> duckdb ../data/dev.duckdb
+> show tables;
+
+Clean - deletes the folders listed in clean-targets
+> dbt clean
+> dbt compile
+> dbt run
+> dbt show --select customers
+
+If you need a GUI for DuckDB:
+> duckdb ../data/dev.duckdb -ui
+
+Get sample data
+> python ./scripts/download_data.py
+
+[i] Create a model >> dbt run >> dbt show --select model
+
+
+To add the GUI:
+> duckdb
+>> SET custom_extension_repository = 'http://extensions.duckdb-backup.org';
+INSTALL ui;
+LOAD ui;
+CALL start_ui();
+
+Library for autocomplete
+> uv add iterfzf
+> uv tool install duckdb-cli
+
+Add to PATH:
+> $env:PATH = "C:\Users\joemar\.local\bin;$env:PATH"
+> uvx --from duckdb-cli==1.5.6 duckdb -ui dev.duckdb
