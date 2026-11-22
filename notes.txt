@@ -256,3 +256,7 @@ Create ci folder
 > mkdir ci
 > cd analytics
 > dbt build --profiles-dir ../ci
+
+Add github workflow
+> curl -o .\.github\workflows\dbt_build.yml https://lukeb.co/dbt-workflow
+
