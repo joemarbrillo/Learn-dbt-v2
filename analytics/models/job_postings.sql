@@ -1,3 +1,5 @@
+{{ config(materialized='ephemeral') }}
+
 select
     job_id,
     job_title,
@@ -9,4 +11,4 @@ select
     search_date,
     search_term
 from {{ source('raw', 'job_postings') }}
-where error is null;
+where error is null
