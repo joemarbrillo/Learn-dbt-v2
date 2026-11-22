@@ -26,7 +26,6 @@ Init project
 > uv init
 > uv sync
 
-If there 
 Activate python environment
 > Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.venv\Scripts\Activate.ps1
@@ -148,4 +147,10 @@ The use of + sign:
 Check the duckdb
 > duckdb ../data/dev.duckdb
 > .quit to exit the duckdb terminal
+
+properties.yml
+> code models/properties.yml
+[i] Modify the models/job_postings.sql to reflect the properties.yml source
+    {{ source('raw', 'job_postings') }}
+> dbt run
 
