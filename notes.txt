@@ -251,3 +251,8 @@ GitHub actions
 Push to GitHub
 ==============
 > git ls-files
+
+Create ci folder
+> mkdir ci
+> cd analytics
+> dbt build --profiles-dir ../ci
