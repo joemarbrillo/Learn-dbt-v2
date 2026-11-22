@@ -5,6 +5,7 @@ select
     job_location,
     job_via,
     job_schedule_type,
+    job_work_from_home,
     search_date,
     search_term
 from'../data/raw/raw_job_postings_*.parquet'

@@ -125,3 +125,27 @@ Library for autocomplete
 Add to PATH:
 > $env:PATH = "C:\Users\joemar\.local\bin;$env:PATH"
 > uvx --from duckdb-cli==1.5.6 duckdb -ui dev.duckdb
+
+Create model jobs_per_month.sql
+> code models/jobs_per_month.sql
+> dbt run
+> dbt run --target prod
+[i] Check the target/compiled/analytics/models for the generated files
+
+Using jinja
+{{ ... }}, {% statement_here %}, {# Jinja comment here #}
+
+> code models/jinja_demo.sql
+> dbt compile --select jinja_demo
+
+Using select (--select)
+> code models/top_locations.sql
+> dbt run --select +top_locations
+The use of + sign:
+    If +model_name -> it builds all its dependencies first before compiling this model
+    If model_name+ -> it also builds downstream models after it is compiled.
+
+Check the duckdb
+> duckdb ../data/dev.duckdb
+> .quit to exit the duckdb terminal
+
