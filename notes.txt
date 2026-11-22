@@ -260,3 +260,9 @@ Create ci folder
 Add github workflow
 > curl -o .\.github\workflows\dbt_build.yml https://lukeb.co/dbt-workflow
 
+> mkdir ../docs
+> dbt docs generate
+
+Go to the target and find the index.html, assets and info_schema folders and move to the docs folder.
+> dbt docs server --target-path ../docs
+
