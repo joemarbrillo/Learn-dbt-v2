@@ -238,4 +238,16 @@ Loads referenced models.
 
 Test: unique
 [i] Update the schema.yml to add data_tests
-    
+
+GitHub actions
+==============
+> duckdb
+    > LOAD httpfs;
+    > ATTACH 'https://lukeb.co/dbt-warehouse' AS jobs;
+    > SHOW TABLES;
+    > USE jobs;
+    > SHOW TABLES;
+
+Push to GitHub
+==============
+> git ls-files
