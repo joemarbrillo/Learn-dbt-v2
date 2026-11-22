@@ -1,0 +1,58 @@
+version: 2
+ 
+models:
+  - name: job_postings
+    description: Cleaned postings.
+    config:
+      persist_docs:
+        relation: true
+        columns: true
+    columns:
+      - name: job_id
+        description: Posting id from scraping
+      - name: job_title
+        description: Posting title
+      - name: company_name
+      - name: job_location
+      - name: job_via
+      - name: job_schedule_type
+      - name: job_work_from_home
+      - name: search_date
+      - name: search_term
+  
+  - name: jobs_per_month
+    description: Monthly postings count by role
+    config:
+      persist_docs:
+        relation: true
+        columns: true
+    columns:
+      - name: month
+      - name: role
+      - name: postings
+  
+  - name: top_locations
+    description: Top 10 locations by posting count
+    config:
+      persist_docs:
+        relation: true
+        columns: true
+    columns:
+      - name: job_location
+      - name: postings
+  
+  - name: monthly_summary
+    description: Monthly summary of job postings; one row per month.
+    config:
+      persist_docs:
+        relation: true
+        columns: true
+    columns:
+      - name: month
+        description: Year and month of the summary.
+      - name: total_postings
+        description: All postings that month (summed from jobs_per_month).
+      - name: remote_postings
+        description: Postings flagged remote that month.
+      - name: pct_remote
+        description: Share of the month's postings flagged remote, percent.

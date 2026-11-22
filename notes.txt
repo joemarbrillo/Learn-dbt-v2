@@ -154,3 +154,28 @@ properties.yml
     {{ source('raw', 'job_postings') }}
 > dbt run
 
+Check if there are issues with the properties.yml
+> dbt compile
+> dbt run
+> duckdb ..\data\dev.duckdb
+    > show tables;
+    > select column_name from information_schema.columns where table_name = 'job_postings';
+
+Let's separate the sources from the properties.yml
+> code models/sources.yml
+
+Rename the properties.yml with schema.yml
+> dbt compile
+
+Auto-generated docs
+> dbt docs generate
+[i] Refer to the target/index.html (or open in a browser)
+
+The DAG (Directed Acyclic Graph)
+> code models/monthly_summary.sql
+> dbt run --select monthly_summary
+> dbt run --select monthly_summary --limit -1
+> dbt docs generate
+> dbt docs serve
+
+Update the schema.yml
