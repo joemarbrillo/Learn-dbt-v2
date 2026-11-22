@@ -17,5 +17,5 @@ SELECT month,
     remote_postings,
     ROUND(100.0 * remote_postings / total_postings, 1) AS pct_remote
 FROM totals
-JOIN remote USING (month)
+INNER JOIN remote USING (month)
 ORDER BY month

@@ -209,3 +209,33 @@ Materialization types:
 2. incrementail -> only adds what's new.
 3. materialized_view
 
+Tests
+=====
+Generic tests
+    unique, not_null, accepted_values, relationships
+Singular tests
+    tests/*.sql
+Unit tests
+    Tests codes, not data
+
+Open schema.yml, update to add tests.
+> dbt test
+
+dbt seed
+========
+Loads referenced models.
+> dbt test
+   Loading ~/.dbt/profiles.yml
+    Failed test  not_null_job_postings_job_location (models/schema.yml:20:13) [4 of 5 in 0.02s]
+    Passed test  not_null_job_postings_job_title [2 of 5 in 0.05s]
+   Skipped model main.jobs_per_month (table) [3 of 5]
+   Skipped model main.monthly_summary (table) [5 of 5]
+   Skipped model main.top_locations (table) [1 of 5]
+
+    It is now failing because some job_location is already null after adding the 
+    data_tests:
+        - not_null
+
+Test: unique
+[i] Update the schema.yml to add data_tests
+    

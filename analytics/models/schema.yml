@@ -12,8 +12,12 @@ models:
         description: Posting id from scraping
       - name: job_title
         description: Posting title
+        data_tests:
+          - not_null
       - name: company_name
       - name: job_location
+        # data_tests:
+        #   - not_null
       - name: job_via
       - name: job_schedule_type
       - name: job_work_from_home
@@ -50,6 +54,9 @@ models:
     columns:
       - name: month
         description: Year and month of the summary.
+        data_tests:
+          - unique
+          - not_null
       - name: total_postings
         description: All postings that month (summed from jobs_per_month).
       - name: remote_postings
