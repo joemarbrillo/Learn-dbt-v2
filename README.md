@@ -16,7 +16,7 @@ A public dbt + DuckDB pipeline over ~627k real job postings, rebuilt and republi
 | --- | --- | --- |
 | **dbt pipeline** | sources -> cleaned model -> insight marts | [`analytics/models`](analytics/models/) |
 | **Data tests** | `unique` / `not_null` on every mart grain | [`schema.yml`](analytics/models/schema.yml) |
-| **Hosted dbt docs** | lineage, descriptions, column tests | [Live docs site (to do)](to_do) |
+| **Hosted dbt docs** | lineage, descriptions, column tests | [Live docs site](https://joemarbrillo.github.io/Learn-dbt-v2/) |
 | **Public CI** | build + test + publish on every push | [Actions workflow](https://github.com/joemarbrillo/Learn-dbt-v2/blob/master/.github/workflows/dbt_build.yml) |
 | **Environments** | local `dev` vs CI `prod` targets | [`ci/profiles.yml`](https://github.com/joemarbrillo/Learn-dbt-v2/blob/master/ci/profiles.yml) |
 | **Published warehouse** | one `ATTACH`, queryable by anyone | [Query it](https://github.com/joemarbrillo/Learn-dbt-v2/releases/download/warehouse/prod.duckdb) |
@@ -52,7 +52,8 @@ SHOW TABLES;
 
 ## Docs
 
-Docs are generated with `dbt docs generate` and published to GitHub pages:
+Docs are generated with `dbt docs generate` and published to GitHub pages [Click to see the docs site](https://joemarbrillo.github.io/Learn-dbt-v2/):
+
 
 The site shows:
 - The full **lineage graph** (sources -> models -> marts)

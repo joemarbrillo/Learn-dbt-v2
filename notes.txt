@@ -266,3 +266,7 @@ Add github workflow
 Go to the target and find the index.html, assets and info_schema folders and move to the docs folder.
 > dbt docs server --target-path ../docs
 
+In GitHub, go to the repository, then Settings --> Pages.
+Select Branch: master, docs folder.
+Go to Actions, builds and deployment.
+In the deploy part, there is generated live URL for the docs.
